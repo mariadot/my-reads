@@ -3,12 +3,30 @@ import { Link } from 'react-router-dom';
 import Shelf from '../components/Shelf';
 
 const Home = props => {
-		return(
-			<div>
-				<Shelf books={props.books}/>
-				<Link to='./search'>Search</Link>
-			</div>
-		)
-	};
+	let shelves = {
+		read: [],
+		currentlyReading: [],
+		wantToRead: []
+	}
+
+	props.books.forEach((book)=>{
+		if(book.shelf === 'currentlyReading'){
+			shelves.currentlyReading.push(book);
+		} else if (book.shelf === 'wantToRead'){
+			shelves.wantToRead.push(book);
+		} else {
+			shelves.read.push(book);
+		}
+	});
+
+	return(
+		<div>
+			<Shelf books={shelves.read}/>
+			<Shelf books={shelves.currentlyReading}/>
+			<Shelf books={shelves.wantToRead}/>
+			<Link to='./search'>Search</Link>
+		</div>
+	)
+};
 
 export default Home;

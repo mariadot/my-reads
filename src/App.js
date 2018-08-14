@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Home from './views/Home';
 import Search from './views/Search';
-import logo from './images/logo.svg';
 import './styles/App.css';
 import * as BooksAPI from './utils/BooksAPI'
 

@@ -1,8 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 const Book = props => {
 	return(
-		<div>
+		<div className="book">
 			<img src={props.info.imageLinks.smallThumbnail}/>
 			<p>{props.info.title}</p>
 			<p>{props.info.authors[0]}</p>

@@ -20,7 +20,7 @@ const Home = props => {
 	});
 
 	return(
-		<div>
+		<div className='bookshelf'>
 			<Shelf books={shelves.read}/>
 			<Shelf books={shelves.currentlyReading}/>
 			<Shelf books={shelves.wantToRead}/>

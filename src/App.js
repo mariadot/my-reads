@@ -8,7 +8,7 @@ import * as BooksAPI from './utils/BooksAPI'
 
 class App extends Component {
   state = {
-    books: null
+    books: []
   }
 
   componentDidMount() {
@@ -21,9 +21,11 @@ class App extends Component {
   }
 
   render() {
-    return (
-      <div className="App">
-        <Route exact path='/' component={ Home } />
+      return (
+        <div className="App">
+          <Route exact path='/' render={()=>(
+            <Home books={this.state.books}/>
+          )}/>
         <Route path='/search' component={ Search } />
       </div>
     );

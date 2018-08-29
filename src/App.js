@@ -7,7 +7,8 @@ import * as BooksAPI from './utils/BooksAPI'
 
 class App extends Component {
   state = {
-    books: []
+    books: [],
+    shelves: ['currentlyReading', 'wantToRead', 'read']
   }
 
   componentDidMount() {
@@ -19,13 +20,25 @@ class App extends Component {
     })
   }
 
+  changeShelf(shelf, book) {
+    BooksAPI.update(book, shelf)
+    .then((books)=>{
+      this.setState(()=>{
+        books
+      })
+    })
+  }
+
   render() {
       return (
         <div className="App">
+          <h1>My Reads</h1>
           <Route exact path='/' render={()=>(
-            <Home books={this.state.books}/>
+            <Home books={this.state.books} changeShelf={this.changeShelf} sheves={this.state.shelves}/>
           )}/>
-        <Route path='/search' component={ Search } />
+        <Route path='/search' render={()=>(
+          <Search changeShelf={this.changeShelf}/>
+        )} />
       </div>
     );
   }

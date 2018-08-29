@@ -21,9 +21,9 @@ const Home = props => {
 
 	return(
 		<div className='bookshelf'>
-			<Shelf books={shelves.read}/>
-			<Shelf books={shelves.currentlyReading}/>
-			<Shelf books={shelves.wantToRead}/>
+			<Shelf books={shelves.read} shelf='Read' changeShelf={props.changeShelf}/>
+			<Shelf books={shelves.currentlyReading} shelf='Currently Reading' changeShelf={props.changeShelf} />
+			<Shelf books={shelves.wantToRead} shelf='Want to Read' changeShelf={props.changeShelf} />
 			<Link to='./search'>Search</Link>
 		</div>
 	)

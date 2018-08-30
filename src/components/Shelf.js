@@ -4,12 +4,16 @@ import Book from './Book';
 const Shelf = props => {
 	let books = props.books;
 	return(
-		<div>
-			<h2>{props.shelf}</h2>
-			<div className='shelf'>
-				{ books.map(book => (
-					<Book key={book.id} info={book} changeShelf={props.changeShelf}/>
-				)) }
+		<div className='bookshelf'>
+			<h2 className='bookshelf-title'>{props.shelf}</h2>
+			<div className='bookshelf-books'>
+				<ul className='books-grid'>
+					{ books.map(book => (
+						<li>
+							<Book key={book.id} info={book} changeShelf={props.changeShelf}/>
+						</li>
+					)) }
+				</ul>
 			</div>
 		</div>
 	)

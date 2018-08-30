@@ -31,8 +31,10 @@ class App extends Component {
 
   render() {
       return (
-        <div className="App">
-          <h1>My Reads</h1>
+        <div className="app">
+          <div className='list-books-title'>
+            <h1>My Reads</h1>
+          </div>
           <Route exact path='/' render={()=>(
             <Home books={this.state.books} changeShelf={this.changeShelf} sheves={this.state.shelves}/>
           )}/>

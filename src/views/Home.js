@@ -20,11 +20,18 @@ const Home = props => {
 	});
 
 	return(
-		<div className='bookshelf'>
-			<Shelf books={shelves.read} shelf='Read' changeShelf={props.changeShelf}/>
-			<Shelf books={shelves.currentlyReading} shelf='Currently Reading' changeShelf={props.changeShelf} />
-			<Shelf books={shelves.wantToRead} shelf='Want to Read' changeShelf={props.changeShelf} />
-			<Link to='./search'>Search</Link>
+		<div className='list-books'>
+			<div className='list-books-title'>
+				<h1>My Reads</h1>
+			</div>
+			<div className='bookshelf'>
+				<Shelf books={shelves.read} shelf='Read' changeShelf={props.changeShelf}/>
+				<Shelf books={shelves.currentlyReading} shelf='Currently Reading' changeShelf={props.changeShelf} />
+				<Shelf books={shelves.wantToRead} shelf='Want to Read' changeShelf={props.changeShelf} />
+				<div className='open-search'>
+					<Link to='./search'>Search</Link>
+				</div>
+			</div>
 		</div>
 	)
 };

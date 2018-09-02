@@ -8,7 +8,7 @@ import * as BooksAPI from './utils/BooksAPI'
 class App extends Component {
   state = {
     books: [],
-    searchedBooks: '',
+    searchedBooks: [],
     shelves: {
       currentlyReading: { id: '1', title:'Currently Reading', name: 'currentlyReading' }, 
       wantToRead: { id: '2', title: 'Want To Read', name: 'wantToRead' }, 
@@ -35,10 +35,13 @@ class App extends Component {
     })
   }
 
-  searchBooks(query) {
-      this.setState(()=>{
-        searchedBooks: query
-      })
+  searchBooks(searchedBooks) {
+    BooksAPI.search(searchedBooks)
+    .then((books) => {
+      this.setState(()=>({
+        searchedBooks: books
+      }))
+    })
   }
 
   render() {
@@ -48,7 +51,7 @@ class App extends Component {
             <Home books={this.state.books} changeShelf={(info)=>this.changeShelf(info)} shelves={this.state.shelves}/>
           )}/>
         <Route path='/search' render={()=>(
-          <Search books={this.state.searchedBooks}  searchBooks={this.searchBooks} changeShelf={this.changeShelf}  />
+          <Search books={this.state.searchedBooks}  searchBooks={(query) => this.searchBooks(query)} changeShelf={(info)=>this.changeShelf(info)}  />
         )} />
       </div>
     );

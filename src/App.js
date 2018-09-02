@@ -25,12 +25,12 @@ class App extends Component {
     })
   }
 
-  changeShelf(shelf, book) {
-    BooksAPI.update(book, shelf)
+  changeShelf(info) {
+    BooksAPI.update(info.book, info.shelf)
     .then((books)=>{
-      book.shelf = shelf;
+      info.book.shelf = info.shelf;
       this.setState(previousState => ({
-        books: previousState.books.filter(b => b.id !== book.id).concat([book])
+        books: previousState.books.filter(b => b.id !== info.book.id).concat([info.book])
       }))
     })
   }
@@ -45,7 +45,7 @@ class App extends Component {
       return (
         <div className="app">
           <Route exact path='/' render={()=>(
-            <Home books={this.state.books} changeShelf={this.changeShelf.bind(this)} shelves={this.state.shelves}/>
+            <Home books={this.state.books} changeShelf={(info)=>this.changeShelf(info)} shelves={this.state.shelves}/>
           )}/>
         <Route path='/search' render={()=>(
           <Search books={this.state.searchedBooks}  searchBooks={this.searchBooks} changeShelf={this.changeShelf}  />

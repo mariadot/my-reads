@@ -8,7 +8,12 @@ import * as BooksAPI from './utils/BooksAPI'
 class App extends Component {
   state = {
     books: [],
-    shelves: ['currentlyReading', 'wantToRead', 'read']
+    searchedBooks: '',
+    shelves: {
+      currentlyReading: { id: '1', title:'Currently Reading', name: 'currentlyReading' }, 
+      wantToRead: { id: '2', title: 'Want To Read', name: 'wantToRead' }, 
+      read: { id: '3', title: 'Read', name: 'read'}
+    }
   }
 
   componentDidMount() {
@@ -23,23 +28,27 @@ class App extends Component {
   changeShelf(shelf, book) {
     BooksAPI.update(book, shelf)
     .then((books)=>{
-      this.setState(()=>{
-        books
-      })
+      book.shelf = shelf;
+      this.setState(previousState => ({
+        books: previousState.books.filter(b => b.id !== book.id).concat([book])
+      }))
     })
+  }
+
+  searchBooks(query) {
+      this.setState(()=>{
+        searchedBooks: query
+      })
   }
 
   render() {
       return (
         <div className="app">
-          <div className='list-books-title'>
-            <h1>My Reads</h1>
-          </div>
           <Route exact path='/' render={()=>(
-            <Home books={this.state.books} changeShelf={this.changeShelf} sheves={this.state.shelves}/>
+            <Home books={this.state.books} changeShelf={this.changeShelf.bind(this)} shelves={this.state.shelves}/>
           )}/>
         <Route path='/search' render={()=>(
-          <Search changeShelf={this.changeShelf}/>
+          <Search books={this.state.searchedBooks}  searchBooks={this.searchBooks} changeShelf={this.changeShelf}  />
         )} />
       </div>
     );

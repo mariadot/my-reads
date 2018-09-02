@@ -6,7 +6,7 @@ const Book = props => {
 		<div className='book'>
 		<div className='book-top'>
 		<div className='book-cover'>
-				<img src={book.imageLinks.thumbnail}/>
+				<img src={book.imageLinks.thumbnail} alt={book.title}/>
 			</div>
 			<div className='book-shelf-changer'>
 				<select onChange={event=>props.changeShelf({value: event.target.value, book: props.book})}>

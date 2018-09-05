@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import Book from './Book';
 
 const Shelf = props => {
@@ -9,8 +10,8 @@ const Shelf = props => {
 			<div className='bookshelf-books'>
 				<ul className='books-grid'>
 					{ books.map(book => (
-						<li>
-							<Book key={book.id} book={book} changeShelf={props.changeShelf}/>
+						<li key={book.id}> 
+							<Book book={book} changeShelf={props.changeShelf}/>
 						</li>
 					)) }
 				</ul>
@@ -18,5 +19,11 @@ const Shelf = props => {
 		</div>
 	)
 };
+
+Shelf.propTypes = {
+	books: PropTypes.array.isRequired,
+	shelf: PropTypes.string.isRequired,
+	changeShelf: PropTypes.func.isRequired
+}
 
 export default Shelf;

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Book from '../components/Book';
 
@@ -32,7 +33,7 @@ class Search extends Component {
 					{ books.length ? <ol className="books-grid">
 						{ books.map(book=>(
 							<li key={book.id}>
-								<Book  book={book} changeShelf={this.props.changeShelf} />
+								<Book book={book} changeShelf={this.props.changeShelf} />
 							</li>
 						))}
 					</ol> : <div>No results for your search query</div>
@@ -43,5 +44,11 @@ class Search extends Component {
 		)
 	}
 };
+
+Search.propTypes = {
+	books: PropTypes.array.isRequired,
+	changeShelf: PropTypes.func.isRequired,
+	searchBooks: PropTypes.func.isRequired
+}
 
 export default Search;

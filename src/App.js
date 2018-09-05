@@ -8,12 +8,17 @@ import * as BooksAPI from './utils/BooksAPI'
 class App extends Component {
   state = {
     books: [],
+<<<<<<< HEAD
     searchedBooks: [],
     shelves: {
       currentlyReading: { id: '1', title:'Currently Reading', name: 'currentlyReading' }, 
       wantToRead: { id: '2', title: 'Want To Read', name: 'wantToRead' }, 
       read: { id: '3', title: 'Read', name: 'read'}
     }
+=======
+    searchedBooks: '',
+    shelves: ['currentlyReading', 'wantToRead', 'read']
+>>>>>>> dec8b9cfefee30b6a1fee6607bda87d0de5121ec
   }
 
   componentDidMount() {
@@ -48,6 +53,12 @@ class App extends Component {
     })
   }
 
+  searchBooks(query) {
+      this.setState(()=>{
+        searchedBooks: query
+      })
+  }
+
   render() {
       return (
         <div className="app">
@@ -55,7 +66,11 @@ class App extends Component {
             <Home books={this.state.books} changeShelf={(info)=>this.changeShelf(info)} shelves={this.state.shelves}/>
           )}/>
         <Route path='/search' render={()=>(
+<<<<<<< HEAD
           <Search books={this.state.searchedBooks}  searchBooks={(query) => this.searchBooks(query)} changeShelf={(info)=>this.changeShelf(info)}  />
+=======
+          <Search books={this.state.searchedBooks}  searchBooks={this.searchBooks} changeShelf={this.changeShelf}  />
+>>>>>>> dec8b9cfefee30b6a1fee6607bda87d0de5121ec
         )} />
       </div>
     );

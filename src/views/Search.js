@@ -29,13 +29,15 @@ class Search extends Component {
 					</div>
 				</div>
 				<div className="search-books-results">
-					<ol className="books-grid">
+					{ books.length ? <ol className="books-grid">
 						{ books.map(book=>(
-							<li>
-							<Book key={book.id} book={book} changeShelf={this.props.changeShelf}/>
-						</li>
+							<li key={book.id}>
+								<Book  book={book} changeShelf={this.props.changeShelf} />
+							</li>
 						))}
-					</ol>
+					</ol> : <div>No results for your search query</div>
+					}
+					
 				</div>
 			</div>
 		)

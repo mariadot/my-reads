@@ -29,17 +29,11 @@ const Home = (props) => {
 				<h1>My Reads</h1>
 			</div>
 			<div className='bookshelf'>
-<<<<<<< HEAD
 				{
 					Object.keys(shelves).map((shelf, index) => (
 						<Shelf key={shelves[shelf].id} books={shelves[shelf].books} shelf={shelvesNames[shelf].title} changeShelf={props.changeShelf} />
 					))
 				}
-=======
-				<Shelf books={shelves.read} shelf='Read' changeShelf={props.changeShelf}/>
-				<Shelf books={shelves.currentlyReading} shelf='Currently Reading' changeShelf={props.changeShelf} />
-				<Shelf books={shelves.wantToRead} shelf='Want to Read' changeShelf={props.changeShelf} />
->>>>>>> dec8b9cfefee30b6a1fee6607bda87d0de5121ec
 				<div className='open-search'>
 					<Link to='./search'>Search</Link>
 				</div>

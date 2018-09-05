@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
 import PropTypes from 'prop-types';
-=======
->>>>>>> dec8b9cfefee30b6a1fee6607bda87d0de5121ec
 import { Link } from 'react-router-dom';
 import Book from '../components/Book';
 
@@ -17,11 +14,7 @@ class Search extends Component {
 	}
 
 	handleChange(event) {
-<<<<<<< HEAD
 		this.setState({value: event.target.value}, () => {
-=======
-		this.setState({value: event.target.value}, function(){
->>>>>>> dec8b9cfefee30b6a1fee6607bda87d0de5121ec
 			this.props.searchBooks(this.state.value);
 		});
 	}
@@ -37,7 +30,6 @@ class Search extends Component {
 					</div>
 				</div>
 				<div className="search-books-results">
-<<<<<<< HEAD
 					{ books.length ? <ol className="books-grid">
 						{ books.map(book=>(
 							<li key={book.id}>
@@ -47,24 +39,16 @@ class Search extends Component {
 					</ol> : <div>No results for your search query</div>
 					}
 					
-=======
-					<ol className="books-grid">
-					
-					</ol>
->>>>>>> dec8b9cfefee30b6a1fee6607bda87d0de5121ec
 				</div>
 			</div>
 		)
 	}
 };
-<<<<<<< HEAD
 
 Search.propTypes = {
 	books: PropTypes.array.isRequired,
 	changeShelf: PropTypes.func.isRequired,
 	searchBooks: PropTypes.func.isRequired
 }
-=======
->>>>>>> dec8b9cfefee30b6a1fee6607bda87d0de5121ec
 
 export default Search;

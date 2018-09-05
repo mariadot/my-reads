@@ -48,12 +48,6 @@ class App extends Component {
     })
   }
 
-  searchBooks(query) {
-      this.setState(()=>{
-        searchedBooks: query
-      })
-  }
-
   render() {
       return (
         <div className="app">

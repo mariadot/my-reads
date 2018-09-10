@@ -36,16 +36,23 @@ class App extends Component {
   }
 
   searchBooks(searchedBooks) {
-    BooksAPI.search(searchedBooks)
-    .then((books) => {
-      if(books.error){
-        books = []
-      }
+    if(searchedBooks){
+      BooksAPI.search(searchedBooks)
+      .then((books) => {
+        if(books.error){
+          books = []
+        }
 
+        this.setState(()=>({
+          searchedBooks: books
+        }))
+      })
+    } else {
       this.setState(()=>({
-        searchedBooks: books
+        searchedBooks: []
       }))
-    })
+    }
+    
   }
 
   render() {

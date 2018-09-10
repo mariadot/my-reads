@@ -7,6 +7,7 @@ const Book = props => {
 	let bookCover =  book.imageLinks ? book.imageLinks.thumbnail : cover;
 	let bookCoverClassName = book.imageLinks ? 'book-cover' : 'placeholder';
 	let bookCoverAlt = book.imageLinks ? book.title : 'Placeholder book icon';
+
 	return (
 		<div className='book'>
 			<div className='book-top'>

@@ -1,13 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import cover from '../assets/placeholder.svg';
 
 const Book = props => {
 	let book = props.book;
+	let bookCover =  book.imageLinks ? book.imageLinks.thumbnail : cover;
+	let bookCoverClassName = book.imageLinks ? 'book-cover' : 'placeholder';
+	let bookCoverAlt = book.imageLinks ? book.title : 'Placeholder book icon';
 	return (
 		<div className='book'>
 			<div className='book-top'>
-			<div className='book-cover'>
-					<img src={book.imageLinks.thumbnail} alt={book.title}/>
+				<div className={bookCoverClassName}>
+					<img src={bookCover} alt={bookCoverAlt}/>
 				</div>
 				<div className='book-shelf-changer'>
 					<select onChange={event=>props.changeShelf({book: props.book, shelf: event.target.value})}>

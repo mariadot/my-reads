@@ -59,11 +59,20 @@ class App extends Component {
       return (
         <div className="app">
           <Route exact path='/' render={()=>(
-            <Home books={this.state.books} changeShelf={(info)=>this.changeShelf(info)} shelves={this.state.shelves}/>
+            <Home 
+              books={this.state.books} 
+              changeShelf={(info)=>this.changeShelf(info)} 
+              shelves={this.state.shelves} 
+            />
           )}/>
-        <Route path='/search' render={()=>(
-          <Search books={this.state.searchedBooks}  searchBooks={(query) => this.searchBooks(query)} changeShelf={(info)=>this.changeShelf(info)}  />
-        )} />
+          <Route path='/search' render={()=>(
+            <Search 
+              books={this.state.searchedBooks}  
+              searchBooks={(query) => this.searchBooks(query)} 
+              changeShelf={(info)=>this.changeShelf(info)}  
+              shelves={this.state.shelves}
+              />
+          )} />
       </div>
     );
   }

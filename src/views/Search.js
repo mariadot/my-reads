@@ -20,7 +20,7 @@ class Search extends Component {
 	}
 
 	render() {
-		let books = this.props.books;
+		const { books, shelves, changeShelf } = this.props;
 		return (
 			<div className='search-books'>
 				<div className='search-books-bar'>
@@ -33,7 +33,10 @@ class Search extends Component {
 					{ books.length ? <ol className="books-grid">
 						{ books.map(book=>(
 							<li key={book.id}>
-								<Book book={book} changeShelf={this.props.changeShelf} />
+								<Book 
+									book={book} 
+									changeShelf={changeShelf} 
+									shelves={shelves} />
 							</li>
 						))}
 					</ol> : <div>No results for your search query</div>
@@ -48,7 +51,8 @@ class Search extends Component {
 Search.propTypes = {
 	books: PropTypes.array.isRequired,
 	changeShelf: PropTypes.func.isRequired,
-	searchBooks: PropTypes.func.isRequired
+	searchBooks: PropTypes.func.isRequired,
+	shelves: PropTypes.object.isRequired
 }
 
 export default Search;

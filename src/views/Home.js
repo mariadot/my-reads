@@ -4,22 +4,20 @@ import { Link } from 'react-router-dom';
 import Shelf from '../components/Shelf';
 
 const Home = (props) => {
-	let books = props.books;
-	let shelves = {
+	const { books, shelves, changeShelf } = props;
+	const bookShelves = {
 		currentlyReading: {id: '1', books: [] },
 		wantToRead: {id: '2', books: [] },
 		read: {id: '3', books: [] }
 	};
 
-	let shelvesNames = props.shelves;
-
 	books.forEach((book)=>{
-		if(book.shelf === shelvesNames.currentlyReading.name){
-			shelves.currentlyReading.books.push(book);
-		} else if (book.shelf === shelvesNames.wantToRead.name){
-			shelves.wantToRead.books.push(book);
+		if(book.shelf === shelves.currentlyReading.name){
+			bookShelves.currentlyReading.books.push(book);
+		} else if (book.shelf === shelves.wantToRead.name){
+			bookShelves.wantToRead.books.push(book);
 		} else {
-			shelves.read.books.push(book);
+			bookShelves.read.books.push(book);
 		}
 	});
 
@@ -30,8 +28,14 @@ const Home = (props) => {
 			</div>
 			<div className='bookshelf'>
 				{
-					Object.keys(shelves).map((shelf, index) => (
-						<Shelf key={shelves[shelf].id} books={shelves[shelf].books} shelf={shelvesNames[shelf].title} changeShelf={props.changeShelf} />
+					Object.keys(bookShelves).map((shelf, index) => (
+						<Shelf 
+							key={bookShelves[shelf].id}
+							books={bookShelves[shelf].books} 
+							shelf={shelves[shelf].title} 
+							changeShelf={changeShelf}
+							shelves={shelves}
+						/>
 					))
 				}
 				<div className='open-search'>

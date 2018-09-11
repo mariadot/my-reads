@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import cover from '../assets/placeholder.svg';
 
 const Book = props => {
-	let book = props.book;
-	let bookCover =  book.imageLinks ? book.imageLinks.thumbnail : cover;
-	let bookCoverClassName = book.imageLinks ? 'book-cover' : 'placeholder';
-	let bookCoverAlt = book.imageLinks ? book.title : 'Placeholder book icon';
+	const { book, shelves, changeShelf } = props;
+	const bookCover =  book.imageLinks ? book.imageLinks.thumbnail : cover;
+	const bookCoverClassName = book.imageLinks ? 'book-cover' : 'placeholder';
+	const bookCoverAlt = book.imageLinks ? book.title : 'Placeholder book icon';
+	const bookShelf = book.shelf;
 
 	return (
 		<div className='book'>
@@ -15,11 +16,19 @@ const Book = props => {
 					<img src={bookCover} alt={bookCoverAlt}/>
 				</div>
 				<div className='book-shelf-changer'>
-					<select onChange={event=>props.changeShelf({book: props.book, shelf: event.target.value})}>
-						<option value="move" selected disabled>Move to...</option>
-						<option value="currentlyReading">Currently Reading</option>
-						<option value="wantToRead">Want to Read</option>
-						<option value="read">Read</option>
+					<select onChange={event=>changeShelf({book: book, shelf: event.target.value})}>
+						<option value=''>None</option>
+						{
+							Object.keys(shelves).map((shelf, index) => (
+								<option 
+									key={index}
+									selected={shelves[shelf].name === bookShelf} 
+									value={shelves[shelf].name}
+								>
+									{shelves[shelf].title}
+								</option>
+							))
+						}
 					</select>
 				</div>
 			</div>

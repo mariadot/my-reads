@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Home from './views/Home';
 import Search from './views/Search';
+import * as BooksAPI from './utils/BooksAPI';
 import './styles/App.css';
-import * as BooksAPI from './utils/BooksAPI'
 
 class App extends Component {
   state = {
@@ -41,18 +41,26 @@ class App extends Component {
       .then((books) => {
         if(books.error){
           books = []
+        } else {
+          // this could really use a debounce
+          this.mapBooks(books);
         }
-
-        this.setState(()=>({
-          searchedBooks: books
-        }))
       })
     } else {
       this.setState(()=>({
         searchedBooks: []
       }))
     }
-    
+  }
+
+  mapBooks(books){
+    Promise.all(
+      books.map(book => BooksAPI.get(book.id))
+    ).then(searchedBooks => 
+      this.setState(()=>({
+        searchedBooks
+      }))
+    );
   }
 
   render() {

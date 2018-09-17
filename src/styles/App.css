@@ -3,8 +3,6 @@ html, body, .root {
 }
 body {
   line-height: 1.5;
-  /*font-family: 'Prata', sans-serif;*/
-  /*241e4e-ef5d60-ec4067-6a6262-9c9990*/
   font-family: 'Pontano Sans', serif;
 }
 body, .app {
